@@ -4,12 +4,12 @@ class PlayerList:
     def __init__(self):
         self._head = None
 
-    def insert_first():
+    def insert_first(self):
         new_node = PlayerNode()
         if self.is_empty():
-            self.head = new_node
+            self._head = new_node
     
     def is_empty(self):
-        if self.head is None:
+        if self._head is None:
             return True
         
