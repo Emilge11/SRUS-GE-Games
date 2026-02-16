@@ -3,6 +3,7 @@ from app.player_node import PlayerNode
 class PlayerList:
     def __init__(self):
         self._head = None
+        self._tail = None
 
     def insert_first(self, player):
         new_node = PlayerNode(player)
