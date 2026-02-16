@@ -5,19 +5,19 @@ class PlayerNode:
         self._previous = None
     
     @property
-    def get_next(self):
+    def next(self):
         return self._next
     
     @next.setter
-    def set_next(self, val):
+    def next(self, val):
         self._next = val
     
     @property
-    def get_previous(self):
+    def previous(self):
         return self._previous
     
     @previous.setter
-    def set_previous(self, val):
+    def previous(self, val):
         self._previous = val
 
     @property
