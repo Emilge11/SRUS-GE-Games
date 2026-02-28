@@ -5,7 +5,15 @@ class PlayerList:
         self._head = None
         self._tail = None
 
+    @property
     def head(self):
+        if self.is_empty():
+            return None
+        
+        return self._head
+    
+    @property
+    def tail(self):
         if self.is_empty():
             return None
         
