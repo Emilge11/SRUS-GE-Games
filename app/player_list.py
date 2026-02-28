@@ -9,8 +9,8 @@ class PlayerList:
         new_node = PlayerNode(player)
         if self.is_empty():
             self._head = new_node
-    
+      
     def is_empty(self):
-        return self._head is None
+        return self._head is None and self._tail is None
 
         
