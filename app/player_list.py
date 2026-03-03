@@ -40,6 +40,14 @@ class PlayerList:
             self._tail.next = new_tail
             new_tail.previous = self._tail
             self._tail = new_tail
+    
+    def delete_head(self):
+        if self.is_empty():
+            return "The list is empty."
+        
+        deleted = self._head
+        self._head = deleted.next
+        self._head.previous = None
             
     def is_empty(self):
         return self._head is None and self._tail is None
