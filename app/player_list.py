@@ -5,7 +5,7 @@ class PlayerList:
         self._head = None
         self._tail = None
 
-   @property
+    @property
     def head(self):
         if self.is_empty():
             return "The list is empty."
@@ -29,7 +29,18 @@ class PlayerList:
             self._head = new_node
             prev_head.previous = self._head
             self._head.next = prev_head
-      
+    
+    def insert_tail(self, player):
+        new_node = PlayerNode(player)
+        if self.is_empty():
+            self._tail = new_node
+            self._head = self._tail
+        else:
+            new_tail = new_node
+            self._tail.next = new_tail
+            new_tail.previous = self._tail
+            self._tail = new_tail
+            
     def is_empty(self):
         return self._head is None and self._tail is None
 
