@@ -5,19 +5,19 @@ class PlayerList:
         self._head = None
         self._tail = None
 
-    @property
+   @property
     def head(self):
         if self.is_empty():
-            return None
+            return "The list is empty."
         
         return self._head
     
     @property
     def tail(self):
         if self.is_empty():
-            return None
+            return "The list is empty."
         
-        return self._head
+        return self._tail
 
     def insert_first(self, player):
         new_node = PlayerNode(player)
