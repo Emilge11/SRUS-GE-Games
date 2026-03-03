@@ -25,10 +25,9 @@ class PlayerList:
             self._head = new_node
             self._tail = self._head
         else:
-            new_node = PlayerNode(player)
             prev_head = self._head
             self._head = new_node
-            prev_head._previous = self._head
+            prev_head.previous = self._head
             self._head.next = prev_head
       
     def is_empty(self):
