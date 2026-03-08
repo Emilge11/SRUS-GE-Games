@@ -64,7 +64,34 @@ class PlayerList:
             self._head = None
         else:
             self._tail.next = None
+    
+    def delete_by_key(self,key):
+        if self.is_empty():
+            return "The list is empty."
+        
+        current = self._head
+
+        while current is not None:
+            if current._current.key == key:
+                prev = current.previous
+                next = current.next
+
+                if prev is None:
+                    self._head = next
+                else:
+                    prev.next = next
+                
+                if next is None:
+                    self._tail = prev
+                else:
+                    next.previous = prev
+                break
             
+            current = current.next
+            
+        return "Key does not exist"
+            
+
     def is_empty(self):
         return self._head is None and self._tail is None
 
