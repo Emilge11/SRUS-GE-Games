@@ -21,7 +21,7 @@ class TestPlayerList(unittest.TestCase):
         
         # Assert after 2nd insert
         self.assertEqual(test_list.head._current.key, 2)
-        self.assertIsNone(test_list.head._previous, None)
+        self.assertIsNone(test_list.head._previous)
         self.assertEqual(test_list.head._next._current.key, 1)
 
         test_node3 = PlayerNode(Player(3, 'John'))
@@ -30,7 +30,7 @@ class TestPlayerList(unittest.TestCase):
         # Assert after 3rd insert
         self.assertEqual(test_list.head._current.key, 3)
         self.assertEqual(test_list.head._next._current.key, 2)
-        self.assertIsNone(test_list.head._previous, None)
+        self.assertIsNone(test_list.head._previous)
     
     def test_insert_tail(self):
         test_list = PlayerList()
@@ -50,7 +50,7 @@ class TestPlayerList(unittest.TestCase):
 
         self.assertEqual(test_list.tail._current.key, 3)
         self.assertEqual(test_list.tail._previous._current.key, 2)
-        self.assertIsNone(test_list.tail._next, None)
+        self.assertIsNone(test_list.tail._next)
        
     def test_delete_head(self):
         test_list = PlayerList()
@@ -69,14 +69,14 @@ class TestPlayerList(unittest.TestCase):
         # Assert after 1st delete
         self.assertEqual(test_list.head._current.key, 2)
         self.assertEqual(test_list.head._next._current.key, 1)
-        self.assertIsNone(test_list.head._previous, None)
+        self.assertIsNone(test_list.head._previous)
 
         test_list.delete_head()
 
         # Assert after 2nd delete
         self.assertEqual(test_list.head._current.key, 1)
-        self.assertIsNone(test_list.head._next, None)
-        self.assertIsNone(test_list.head._previous, None)
+        self.assertIsNone(test_list.head._next)
+        self.assertIsNone(test_list.head._previous)
 
         test_list.delete_head()
 
@@ -99,15 +99,15 @@ class TestPlayerList(unittest.TestCase):
 
         # Assert after 1st delete
         self.assertEqual(test_list.tail._current.key, 2)
-        self.assertIsNone(test_list.tail._next, None)
+        self.assertIsNone(test_list.tail._next)
         self.assertEqual(test_list.tail._previous._current.key, 1)
 
         test_list.delete_tail()
 
         # Assert after 2nd delete
         self.assertEqual(test_list.tail._current.key, 1)
-        self.assertIsNone(test_list.tail._next, None)
-        self.assertIsNone(test_list.tail._previous, None)
+        self.assertIsNone(test_list.tail._next)
+        self.assertIsNone(test_list.tail._previous)
 
         test_list.delete_tail()
 
