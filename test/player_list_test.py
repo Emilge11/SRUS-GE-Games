@@ -81,7 +81,7 @@ class TestPlayerList(unittest.TestCase):
 
         test_list.delete_head()
 
-        # Assert after 4th delete - list is empty
+        # Assert 4th delete - list is empty now
         self.assertEqual(test_list.delete_head(), "The list is empty.")
     
     def test_delete_tail(self):
@@ -112,7 +112,7 @@ class TestPlayerList(unittest.TestCase):
 
         test_list.delete_tail()
 
-        # Assert after 4th delete - list is empty
+        # Assert 4th delete - list is empty now
         self.assertEqual(test_list.delete_tail(), "The list is empty.")
 
     def test_delete_key_empty_list(self):
@@ -149,6 +149,33 @@ class TestPlayerList(unittest.TestCase):
 
         # Assert after 3rd delete by key - not found
         self.assertEqual(test_list.delete_by_key(3), "Key not found")
+    
+    def test_display_empty(self):
+        test_list = PlayerList()
+
+        # Assert when list is empty
+        self.assertEqual(test_list.display(None), "The list is empty.")
+
+    def test_display(self):
+        test_list = PlayerList()
+
+        test_node1 = PlayerNode(Player(1, "Bob"))
+        test_list.insert_first(test_node1)
+
+        # Assert after 1st insert
+        self.assertEqual(test_list.display(True), [1])
+        self.assertEqual(test_list.display(False), [1])
+        
+        test_node2 = PlayerNode(Player(2, "Alice"))
+        test_list.insert_tail(test_node2)
+
+        test_node3 = PlayerNode(Player(3, "John"))
+        test_list.insert_tail(test_node3)
+
+        # Assert after 3rd insert - display list
+        self.assertEqual(test_list.display(True), [1, 2, 3])
+        self.assertEqual(test_list.display(False), [3, 2, 1])
+        self.assertEqual(test_list.display(None), [1, 2, 3])
 
 if __name__ == '__main__':
     unittest.main()
