@@ -83,6 +83,36 @@ class TestPlayerList(unittest.TestCase):
         # Assert after 3rd delete - list is empty
         self.assertEqual(test_list.is_empty(), True)
     
+    def test_delete_tail(self):
+        test_list = PlayerList()
+
+        test_node1 = PlayerNode(Player(1, "Bob"))
+        test_list.insert_tail(test_node1)
+
+        test_node2 = PlayerNode(Player(2, "Alice"))
+        test_list.insert_tail(test_node2)
+
+        test_node3 = PlayerNode(Player(3, "John"))
+        test_list.insert_tail(test_node3)
+
+        test_list.delete_tail()
+
+        # Assert after 1st delete
+        self.assertEqual(test_list.tail._current.key, 2)
+        self.assertIsNone(test_list.tail._next, None)
+        self.assertEqual(test_list.tail._previous._current.key, 1)
+
+        test_list.delete_tail()
+
+        # Assert after 2nd delete
+        self.assertEqual(test_list.tail._current.key, 1)
+        self.assertIsNone(test_list.tail._next, None)
+        self.assertIsNone(test_list.tail._previous, None)
+
+        test_list.delete_tail()
+
+        # Assert after 3rd delete - list is empty
+        self.assertEqual(test_list.is_empty(), True)
 
 if __name__ == '__main__':
     unittest.main()
