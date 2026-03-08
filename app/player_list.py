@@ -89,7 +89,7 @@ class PlayerList:
             
             current = current.next
             
-        return "Key does not exist"
+        return "Key not found"
             
 
     def is_empty(self):
