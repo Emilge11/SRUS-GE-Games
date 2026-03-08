@@ -91,6 +91,27 @@ class PlayerList:
             
         return "Key not found"
             
+    def display(self, forward=None):
+        if self.is_empty():
+            return "The list is empty."
+        
+        nodes_list = []
+
+        if forward is None or forward:
+            current = self._head
+
+            while current is not None:
+                nodes_list.append(current._current.key)
+                current = current.next  
+        
+        if forward is False:
+            current = self._tail
+
+            while current is not None:
+                nodes_list.append(current._current.key)
+                current = current.previous 
+   
+        return nodes_list
 
     def is_empty(self):
         return self._head is None
