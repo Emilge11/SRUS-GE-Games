@@ -47,7 +47,11 @@ class PlayerList:
         
         deleted = self._head
         self._head = deleted.next
-        self._head.previous = None
+
+        if self._head is None:
+            self._tail = None
+        else:
+            self._head.previous = None
     
     def delete_tail(self):
         if self.is_empty():
@@ -55,7 +59,11 @@ class PlayerList:
         
         deleted = self._tail
         self._tail = deleted.previous
-        self._tail.next = None
+
+        if self._tail is None:
+            self._head = None
+        else:
+            self._tail.next = None
             
     def is_empty(self):
         return self._head is None and self._tail is None
