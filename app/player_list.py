@@ -19,24 +19,22 @@ class PlayerList:
         
         return self._tail
 
-    def insert_first(self, player):
-        new_node = PlayerNode(player)
+    def insert_first(self, node):
         if self.is_empty():
-            self._head = new_node
+            self._head = node
             self._tail = self._head
         else:
             prev_head = self._head
-            self._head = new_node
+            self._head = node
             prev_head.previous = self._head
             self._head.next = prev_head
     
-    def insert_tail(self, player):
-        new_node = PlayerNode(player)
+    def insert_tail(self, node):
         if self.is_empty():
-            self._tail = new_node
+            self._tail = node
             self._head = self._tail
         else:
-            new_tail = new_node
+            new_tail = node
             self._tail.next = new_tail
             new_tail.previous = self._tail
             self._tail = new_tail
@@ -72,7 +70,7 @@ class PlayerList:
         current = self._head
 
         while current is not None:
-            if current._current.key == key:
+            if current.key == key:
                 prev = current.previous
                 next = current.next
 
@@ -85,11 +83,11 @@ class PlayerList:
                     self._tail = prev
                 else:
                     next.previous = prev
-                break
+                return
             
             current = current.next
-            
-        return "Key not found"
+        else:  
+            return "Key not found"
             
     def display(self, forward=None):
         if self.is_empty():
@@ -101,14 +99,14 @@ class PlayerList:
             current = self._head
 
             while current is not None:
-                nodes_list.append(current._current.key)
+                nodes_list.append(current.key)
                 current = current.next  
         
         if forward is False:
             current = self._tail
 
             while current is not None:
-                nodes_list.append(current._current.key)
+                nodes_list.append(current.key)
                 current = current.previous 
    
         return nodes_list
