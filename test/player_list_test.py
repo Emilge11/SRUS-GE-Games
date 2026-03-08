@@ -41,14 +41,14 @@ class TestPlayerList(unittest.TestCase):
         test_node2 = PlayerNode(Player(2, 'John'))
         test_list.insert_tail(test_node2)
 
-        #Assert after 2nd insert
+        # Assert after 2nd insert
         self.assertEqual(test_list.tail.key, 2)
         self.assertEqual(test_list.head.key, 1)
 
         test_node3 = PlayerNode(Player(3, 'Alice'))
         test_list.insert_tail(test_node3)
 
-        #Assert after 3rd insert
+        # Assert after 3rd insert
         self.assertEqual(test_list.tail.key, 3)
         self.assertEqual(test_list.tail.previous.key, 2)
         self.assertIsNone(test_list.tail.next)

@@ -20,6 +20,16 @@ class PlayerList:
         return self._tail
 
     def insert_first(self, node):
+        '''
+        Inserts a node at the head
+
+        Parameters:
+            node(node): node with player object
+
+        Returns:
+            Nothing
+        
+        '''
         if self.is_empty():
             self._head = node
             self._tail = self._head
@@ -30,6 +40,16 @@ class PlayerList:
             self._head.next = prev_head
     
     def insert_tail(self, node):
+        '''
+        Inserts a node at the tail
+
+        Parameters:
+            node(node): node with player object
+
+        Returns:
+            Nothing
+        
+        '''
         if self.is_empty():
             self._tail = node
             self._head = self._tail
@@ -40,6 +60,17 @@ class PlayerList:
             self._tail = new_tail
     
     def delete_head(self):
+        '''
+        Deletes a node from the head
+
+        Parameters:
+            Nothing
+
+        Returns:
+            "The list is empty."
+            Nothing if deleted successfully
+        
+        '''
         if self.is_empty():
             return "The list is empty."
         
@@ -52,6 +83,18 @@ class PlayerList:
             self._head.previous = None
     
     def delete_tail(self):
+        '''
+        Deletes a node from the tail
+
+        Parameters:
+            Nothing
+
+        Returns:
+            "The list is empty."
+            Nothing if deleted successfully
+        
+        '''
+
         if self.is_empty():
             return "The list is empty."
         
@@ -63,7 +106,20 @@ class PlayerList:
         else:
             self._tail.next = None
     
-    def delete_by_key(self,key):
+    def delete_by_key(self, key):
+        '''
+        Deletes a node by the key
+
+        Parameters:
+            key(int): the player id to search for
+
+        Returns:
+            "The list is empty."
+            "Key not found"
+            Nothing if deleted successfully
+        
+        '''
+
         if self.is_empty():
             return "The list is empty."
         
@@ -90,6 +146,18 @@ class PlayerList:
         return "Key not found"
             
     def display(self, forward=True):
+        '''
+        Prints a list with all the nodes in forward or reverse
+
+        Parameters:
+            forward(bool): forwards with "True" or reverse with "False"
+
+        Returns:
+            "The list is empty."
+            List of keys with order
+        
+        '''
+
         if self.is_empty():
             return "The list is empty."
         
