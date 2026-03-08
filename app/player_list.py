@@ -93,6 +93,6 @@ class PlayerList:
             
 
     def is_empty(self):
-        return self._head is None and self._tail is None
+        return self._head is None
 
         
