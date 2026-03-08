@@ -10,22 +10,7 @@ class TestPlayerList(unittest.TestCase):
 
         self.assertEqual(result, True)
     
-    def test_insert_first_into_empty_list(self):
-        test_list = PlayerList()
-
-        test_node = PlayerNode(Player(1, 'Bob'))
-        test_list.insert_first(test_node)
-
-        test_head = test_list.head
-        result1 = test_head._current.key
-        result2 = test_head._previous
-        result3 = test_head._next
-
-        self.assertEqual(result1, 1)
-        self.assertIsNone(result2, None)
-        self.assertIsNone(result3, None)
-    
-    def test_insert_first_into_single_list(self):
+    def test_insert_first(self):
         test_list = PlayerList()
 
         test_node1 = PlayerNode(Player(1, 'Bob'))
@@ -33,133 +18,71 @@ class TestPlayerList(unittest.TestCase):
 
         test_node2 = PlayerNode(Player(2, 'Alice'))
         test_list.insert_first(test_node2)
+        
+        # Assert after 2nd insert
+        self.assertEqual(test_list.head._current.key, 2)
+        self.assertIsNone(test_list.head._previous, None)
+        self.assertEqual(test_list.head._next._current.key, 1)
 
-        test_head = test_list.head
-        result1 = test_head._current.key
-        result2 = test_head._next._current.key
-        result3 = test_head._previous
+        test_node3 = PlayerNode(Player(3, 'John'))
+        test_list.insert_first(test_node3)
 
-        self.assertEqual(result1, 2)
-        self.assertEqual(result2, 1)
-        self.assertIsNone(result3, None)
+        # Assert after 3rd insert
+        self.assertEqual(test_list.head._current.key, 3)
+        self.assertEqual(test_list.head._next._current.key, 2)
+        self.assertIsNone(test_list.head._previous, None)
     
-    def test_insert_first_into_multi_list(self):
-        test_list = PlayerList()
-
-        test_node = PlayerNode(Player(1, 'Bob'))
-        test_list.insert_first(test_node)
-
-        test_node = PlayerNode(Player(2, 'Alice'))
-        test_list.insert_first(test_node)
-
-        test_node = PlayerNode(Player(3, 'Charlie'))
-        test_list.insert_first(test_node)
-
-        test_head = test_list.head
-        result1 = test_head._current.key
-        result2 = test_head._next._current.key
-        result3 = test_head._previous
-
-        self.assertEqual(result1, 3)
-        self.assertEqual(result2, 2)
-        self.assertIsNone(result3, None)
-    
-    def test_insert_tail_into_empty_list(self):
-        test_list = PlayerList()
-
-        test_node = PlayerNode(Player(1, 'Bob'))
-        test_list.insert_tail(test_node)
-
-        test_tail = test_list.tail
-        test_head = test_list.head
-        result1 = test_tail._current.key
-        result2 = test_head._current.key
-
-        self.assertEqual(result1, 1)
-        self.assertEqual(result2, 1)
-    
-    def test_insert_tail_into_single_list(self):
+    def test_insert_tail(self):
         test_list = PlayerList()
 
         test_node1 = PlayerNode(Player(1, 'Bob'))
-        test_list.insert_first(test_node1)
+        test_list.insert_tail(test_node1)
 
-        test_node2 = PlayerNode(Player(2, 'Alice'))
+        test_node2 = PlayerNode(Player(2, 'John'))
         test_list.insert_tail(test_node2)
 
-        test_tail = test_list.tail
-        tail_prev = test_tail._previous
-        result1 = test_tail._current.key
-        result2 = tail_prev._current.key
-        result3 = test_tail.next
+        #Assert after 2nd insert
+        self.assertEqual(test_list.tail._current.key, 2)
+        self.assertEqual(test_list.head._current.key, 1)
 
-        self.assertEqual(result1, 2)
-        self.assertEqual(result2, 1)
-        self.assertIsNone(result3, None)
-    
-    def test_insert_tail_into_multi_list(self):
-        test_list = PlayerList()
-
-        test_node1 = PlayerNode(Player(1, 'Bob'))
-        test_list.insert_first(test_node1)
-
-        test_node2 = PlayerNode(Player(2, 'Alice'))
-        test_list.insert_tail(test_node2)
-
-        test_node3 = PlayerNode(Player(3, 'Charlie'))
+        test_node3 = PlayerNode(Player(3, 'Alice'))
         test_list.insert_tail(test_node3)
 
-        test_tail = test_list.tail
-        tail_prev = test_tail.previous
-        result1 = test_tail._current.key
-        result2 = tail_prev._current.key
-        result3 = test_tail.next
-
-        self.assertEqual(result1, 3)
-        self.assertEqual(result2, 2)
-        self.assertIsNone(result3, None)
-    
-    def test_deleted_head(self):
+        self.assertEqual(test_list.tail._current.key, 3)
+        self.assertEqual(test_list.tail._previous._current.key, 2)
+        self.assertIsNone(test_list.tail._next, None)
+       
+    def test_delete_head(self):
         test_list = PlayerList()
 
         test_node1 = PlayerNode(Player(1, "Bob"))
-        test_node2 = PlayerNode(Player(2, "Alice"))
-
         test_list.insert_first(test_node1)
+
+        test_node2 = PlayerNode(Player(2, "Alice"))
         test_list.insert_first(test_node2)
 
-        test_list.delete_head()
-
-        test_head = test_list.head
-        result1 = test_head._current.key
-        result2 = test_head._previous
-        self.assertEqual(result1, 1)
-        self.assertIsNone(result2, None)
-    
-    def test_deleted_head_multi(self):
-        test_list = PlayerList()
-
-        test_node1 = PlayerNode(Player(1, "Bob"))
-        test_node2 = PlayerNode(Player(2, "Alice"))
         test_node3 = PlayerNode(Player(3, "John"))
-        test_node4 = PlayerNode(Player(4, "Mark"))
-
-        test_list.insert_first(test_node1)
-        test_list.insert_first(test_node2)
         test_list.insert_first(test_node3)
-        test_list.insert_first(test_node4)
 
         test_list.delete_head()
+
+        # Assert after 1st delete
+        self.assertEqual(test_list.head._current.key, 2)
+        self.assertEqual(test_list.head._next._current.key, 1)
+        self.assertIsNone(test_list.head._previous, None)
+
         test_list.delete_head()
 
-        test_head = test_list.head
-        result1 = test_head._current.key
-        result2 = test_head._previous
-        result3 = test_head._next._current.key
-        
-        self.assertEqual(result1, 2)
-        self.assertIsNone(result2, None)
-        self.assertEqual(result3, 1)
+        # Assert after 2nd delete
+        self.assertEqual(test_list.head._current.key, 1)
+        self.assertIsNone(test_list.head._next, None)
+        self.assertIsNone(test_list.head._previous, None)
+
+        test_list.delete_head()
+
+        # Assert after 3rd delete - list is empty
+        self.assertEqual(test_list.is_empty(), True)
+    
 
 if __name__ == '__main__':
     unittest.main()
