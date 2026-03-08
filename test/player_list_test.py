@@ -81,8 +81,8 @@ class TestPlayerList(unittest.TestCase):
 
         test_list.delete_head()
 
-        # Assert after 4rd delete - list is empty
-        self.assertEqual(test_list.delete_tail(), "The list is empty.")
+        # Assert after 4th delete - list is empty
+        self.assertEqual(test_list.delete_head(), "The list is empty.")
     
     def test_delete_tail(self):
         test_list = PlayerList()
@@ -112,7 +112,7 @@ class TestPlayerList(unittest.TestCase):
 
         test_list.delete_tail()
 
-        # Assert after 4rd delete - list is empty
+        # Assert after 4th delete - list is empty
         self.assertEqual(test_list.delete_tail(), "The list is empty.")
 
 if __name__ == '__main__':
