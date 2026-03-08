@@ -83,11 +83,11 @@ class PlayerList:
                     self._tail = prev
                 else:
                     next.previous = prev
+
                 return
-            
             current = current.next
-        else:  
-            return "Key not found"
+            
+        return "Key not found"
             
     def display(self, forward=True):
         if self.is_empty():
