@@ -89,7 +89,7 @@ class PlayerList:
         else:  
             return "Key not found"
             
-    def display(self, forward=None):
+    def display(self, forward=True):
         if self.is_empty():
             return "The list is empty."
         
